@@ -27,7 +27,7 @@ const Item = ({ title, to, icon, selected, setSelected }) => {
       active={selected === title}
       style={{
         color: colors.gray[100],
-        cursor: "pointer",
+        // cursor: "pointer",
       }}
       onClick={() => setSelected(title)}
       icon={icon}
@@ -47,7 +47,6 @@ const Sidebar = () => {
       sx={{
         "& .pro-sidebar-inner": {
           background: `${colors.primary[400]} !important`,
-          // height: "100vh",
         },
 
         "&.pro-icon-wrapper": {
@@ -62,6 +61,9 @@ const Sidebar = () => {
         },
         "&.pro-menu-item.active": {
           color: "#6870fa !important",
+        },
+        "& .pro-icon": {
+          backgroundColor: `${colors.primary[400]} !important`,
         },
       }}
     >
@@ -83,7 +85,7 @@ const Sidebar = () => {
                 ml="15px"
               >
                 <Typography variant="h3" color={colors.gray[100]}>
-                  ADMIN
+                  DASHBOARD
                 </Typography>
                 <IconButton onClick={() => setIsCollapsed(!isCollapsed)}>
                   <MenuOutlined />
@@ -103,8 +105,9 @@ const Sidebar = () => {
                   alt="Profile use"
                   width="100px"
                   height="100px"
-                  src={require("../../assets/user.png")}
-                  // src=""
+                  src={require(theme.palette.mode === "dark"
+                    ? "../../assets/user.png"
+                    : "../../assets/user2.png")}
                   style={{ cursor: "pointer", borderRadius: "50%" }}
                 />
               </Box>

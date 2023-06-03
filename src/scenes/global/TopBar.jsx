@@ -1,8 +1,7 @@
-import { Box, InputIcon, useTheme } from "@mui/material";
+import { Box, useTheme, IconButton } from "@mui/material";
 import InputBase from "@mui/material/InputBase";
 import React, { useContext } from "react";
 import { ColorModeContext, tokens } from "../../theme";
-import { IconButton } from "@mui/material";
 
 import {
   LightModeOutlined,
