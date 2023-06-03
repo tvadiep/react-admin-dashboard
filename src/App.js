@@ -13,10 +13,7 @@ import { FAQ } from "./scenes/faq";
 import { Line } from "./scenes/line";
 import { Geography } from "./scenes/geography.jsx";
 import { Calendar } from "./scenes/calendar";
-
 import { Routes, Route } from "react-router-dom";
-// import { useState } from "react";
-
 function App() {
   const [theme, colorMode] = useMode(ColorModeContext);
   return (
@@ -25,7 +22,7 @@ function App() {
         <CssBaseline />
         <div className="app">
           <Sidebar isSideBar={true} />
-          <main className="content">
+          <main className="content" style={{ overflow: "scroll" }}>
             <TopBar />
             <Routes>
               <Route path="/" element={<Dashboard />} />
