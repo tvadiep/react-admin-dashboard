@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Box, Typography, useTheme } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 import { tokens } from "../../theme";
@@ -10,7 +10,6 @@ export const Invoices = () => {
   const colors = tokens(theme.palette.mode);
   const columns = [
     { field: "id", headerName: "ID", flex: 0.5 },
-    { field: "registrarId", headerName: "Registrar ID" },
     {
       field: "name",
       headerName: "Name",
@@ -23,15 +22,22 @@ export const Invoices = () => {
       field: "cost",
       headerName: "Cost",
       flex: 1,
-      renderCell: (params) => {
+      renderCell: (params) => (
         <Typography color={colors.greenAccent[500]}>
           ${params.row.cost}
-        </Typography>;
-      },
+        </Typography>
+      ),
     },
 
     { field: "date", headerName: "Date", flex: 1 },
   ];
+  const rowMap = new Map(mockDataInvoices.map((row) => [row.id, row]));
+  const handleRowSelection = (selection) => {
+    selection.forEach((row) => {
+      const selectedRowData = rowMap.get(row);
+      console.log(selectedRowData);
+    });
+  };
   return (
     <Box m="20px">
       <Header title={"INVOICES"} subTitle={"List of Invoices Balances"} />
@@ -64,7 +70,12 @@ export const Invoices = () => {
           },
         }}
       >
-        <DataGrid checkboxSelection rows={mockDataInvoices} columns={columns} />
+        <DataGrid
+          checkboxSelection
+          rows={mockDataInvoices}
+          columns={columns}
+          onSelectionModelChange={handleRowSelection}
+        />
       </Box>
     </Box>
   );
